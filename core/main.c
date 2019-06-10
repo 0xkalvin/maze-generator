@@ -3,7 +3,7 @@
 #include <stdbool.h> 
 #include <time.h>
 
-#include "../define/dll.c"
+#include "../define/dll.h"
 
 bool is_odd(int l, int c){
     return l % 2 != 0 && c % 2 != 0;
@@ -62,8 +62,10 @@ int main(){
 
     struct Dll lista;
 
-    for(int i = 0; i < 10; i++) insertAtTail(&lista, i);
+    for(int i = 0; i < 10; i++) insertAtHead(&lista, i);
 
+    printList(&lista);
+    removeTail(&lista);
     printList(&lista);
 
     return 0;

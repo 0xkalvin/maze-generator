@@ -27,12 +27,33 @@ void insertAtTail(struct Dll *p, int value){
     }
 }
 
+void insertAtHead(struct Dll *p, int value){
+    struct Node *newNode = mallocNode(value);
+    if(isEmpty(p))  p->head = p->tail = newNode;
+    else{
+        newNode->next = p->head;
+        p->head->prev = newNode;
+        p->head = newNode;
+    }
+}
+
+void removeTail(struct Dll *p){
+    if(isEmpty(p)) return;
+    else{
+        p->tail->prev->next = NULL;
+        free(p->tail);
+        p->tail = p->tail->prev;
+    }
+}
+
 
 void printList(struct Dll *p){
     struct Node *aux = p->head;
+    printf("[");
     while(aux != NULL){
-        printf(" %d", aux->value);
+        if(aux->next == NULL)   printf(" %d", aux->value);
+        else    printf(" %d,", aux->value);
         aux = aux->next;     
     }
-    printf("\n");
+    printf(" ]\n");
 }
